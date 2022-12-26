@@ -26,6 +26,20 @@ exports.up = (knex) => {
         .notNullable()
         .references('project_id')
         .inTable('projects');
+    })
+    .createTable('project_resources', (tbl) => {
+      tbl
+        .integer('project_id')
+        .unsigned()
+        .notNullable()
+        .references('project_id')
+        .inTable('projects');
+      tbl
+        .integer('resource_id')
+        .unsigned()
+        .notNullable()
+        .references('resource_id')
+        .inTable('resources');
     });
 };
 
@@ -35,6 +49,7 @@ exports.up = (knex) => {
  */
 exports.down = (knex) => {
   return knex.schema
+    .dropTableIfExists('project_resources')
     .dropTableIfExists('tasks')
     .dropTableIfExists('resources')
     .dropTableIfExists('projects');
