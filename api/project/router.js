@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const Projects = require('./model');
+const { validateProjectPost } = require('./middleware');
 
 // GET all projects
 router.get('/', (req, res) => {
@@ -19,6 +20,11 @@ router.get('/', (req, res) => {
 
     res.status(200).json(projects);
   });
+});
+
+// POST project
+router.post('/', validateProjectPost, (req, res) => {
+  console.log('POST');
 });
 
 module.exports = router;
