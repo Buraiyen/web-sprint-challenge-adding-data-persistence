@@ -24,7 +24,24 @@ router.get('/', (req, res) => {
 
 // POST project
 router.post('/', validateProjectPost, (req, res) => {
-  console.log('POST');
+  const project = req.body;
+  if (project.project_completed === undefined) {
+    project.project_completed = false;
+  } else if (project.project_completed === 0) {
+    project.project_completed = false;
+  } else if (project.project_completed === 1) {
+    project.project_completed = true;
+  }
+
+  Projects.insert(project)
+    .then(() => {
+      res.status(200).json(project);
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: err.message,
+      });
+    });
 });
 
 module.exports = router;

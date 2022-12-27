@@ -5,4 +5,12 @@ const getAll = () => {
   return db('projects');
 };
 
-module.exports = { getAll };
+const insert = (project) => {
+  try {
+    return db('projects').insert(project);
+  } catch (err) {
+    console.log(`Error occured when inserting project. ${err}`);
+  }
+};
+
+module.exports = { getAll, insert };
