@@ -6,11 +6,13 @@ const validateTaskParams = (req, res, next) => {
     res.status(404).json({
       message: 'task payload missing parameters',
     });
+    return;
   }
   next();
 };
 
 const validateProjectId = (req, res, next) => {
+  const { project_id } = req.body;
   Projects.getProjectById(project_id).then((project) => {
     if (!project.length) {
       res.status(404).json({

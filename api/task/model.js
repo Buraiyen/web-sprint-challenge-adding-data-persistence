@@ -10,7 +10,7 @@ const getAll = () => {
 };
 
 const insert = (task) => {
-  return;
+  return db('tasks').insert(task);
 };
 
 module.exports = { getAll, insert };

@@ -19,7 +19,16 @@ router.get('/', (req, res) => {
 
 router.post('/', validateTaskParams, validateProjectId, (req, res) => {
   const task = req.body;
-  Tasks.insert(task);
+  Tasks.insert(task).then(() => {
+    console.log(task);
+    if (task.task_completed === undefined) {
+      task.task_completed = false;
+    }
+    if (task.task_notes === undefined) {
+      task.task_notes = null;
+    }
+    res.status(200).json(task);
+  });
 });
 
 module.exports = router;
