@@ -5,4 +5,8 @@ const getAll = () => {
   return db('resources');
 };
 
-module.exports = { getAll };
+const insert = (resource) => {
+  return db('resources').insert(resource);
+};
+
+module.exports = { getAll, insert };

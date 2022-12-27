@@ -9,4 +9,13 @@ router.get('/', (req, res) => {
   });
 });
 
+router.post('/', (req, res) => {
+  const resource = req.body;
+  Resources.insert(resource).then(() => {
+    res.status(200).json({
+      resource_name: resource.resource_name,
+    });
+  });
+});
+
 module.exports = router;
