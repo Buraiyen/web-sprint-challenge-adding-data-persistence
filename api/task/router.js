@@ -4,7 +4,16 @@ const router = express.Router();
 const Tasks = require('./model');
 
 router.get('/', (req, res) => {
-  console.log('tasks');
+  Tasks.getAll().then((tasks) => {
+    tasks.forEach((task) => {
+      if (task.task_completed) {
+        task.task_completed = true;
+      } else {
+        task.task_completed = false;
+      }
+    });
+    res.status(200).json(tasks);
+  });
 });
 
 module.exports = router;
