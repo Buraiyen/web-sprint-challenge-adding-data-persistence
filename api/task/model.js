@@ -9,4 +9,8 @@ const getAll = () => {
   );
 };
 
-module.exports = { getAll };
+const insert = (task) => {
+  return;
+};
+
+module.exports = { getAll, insert };

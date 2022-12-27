@@ -5,6 +5,10 @@ const getAll = () => {
   return db('projects');
 };
 
+const getProjectById = (projectId) => {
+  return db('projects').where({ project_id: projectId });
+};
+
 const insert = (project) => {
   try {
     return db('projects').insert(project);
@@ -13,4 +17,4 @@ const insert = (project) => {
   }
 };
 
-module.exports = { getAll, insert };
+module.exports = { getAll, insert, getProjectById };
