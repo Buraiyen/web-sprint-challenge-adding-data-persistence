@@ -9,4 +9,8 @@ const insert = (resource) => {
   return db('resources').insert(resource);
 };
 
-module.exports = { getAll, insert };
+const getResourceByName = (resourceName) => {
+  return db('resources').where({ resource_name: resourceName });
+};
+
+module.exports = { getAll, insert, getResourceByName };
